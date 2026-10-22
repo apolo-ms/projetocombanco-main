@@ -1,6 +1,10 @@
 from fastapi import APIRouter      # organiza rotas em grupos
 from pydantic import BaseModel     # valida os dados que chegam na API
-from database import conectar      # nossa função de conexão
+
+try:
+    from database import conectar      # nossa função de conexão
+except ModuleNotFoundError:
+    from backend.database import conectar
 
 router = APIRouter()               # cria o grupo de rotas
 

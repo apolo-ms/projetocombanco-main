@@ -1,7 +1,12 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, File, UploadFile
 from pydantic import BaseModel
 from typing import Optional
-from database import conectar
+import os
+
+try:
+    from database import conectar
+except ModuleNotFoundError:
+    from backend.database import conectar
 
 router = APIRouter()
 
@@ -15,6 +20,7 @@ class Agendamento(BaseModel):
     valortatuagem: Optional[float] = None   # opcional
     status: Optional[str] = None            # só é usado ao atualizar (ver Parte 7)
 
+
 @router.post("/agendamentos")
 def criar_agendamento(agendamento: Agendamento):
     conn = conectar()
@@ -25,11 +31,10 @@ def criar_agendamento(agendamento: Agendamento):
         (agendamento.idcliente, agendamento.idtatuador, agendamento.dataagendamento,
          agendamento.horaagendamento, agendamento.descricaotatuagem, agendamento.valortatuagem)
     )
-    # repare que a coluna status nem aparece aqui — o banco aplica sozinho
-    # o DEFAULT 'pendente' que já foi definido lá na Aula 2
+    novo_id = cursor.lastrowid   # o ID que o MySQL gerou sozinho pro novo agendamento (AUTO_INCREMENT)
     conn.commit()
     conn.close()
-    return {"mensagem": "Agendamento cadastrado com sucesso"}
+    return {"mensagem": "Agendamento cadastrado com sucesso", "idagendamento": novo_id}
 
 @router.get("/agendamentos")
 def listar_agendamentos():
@@ -97,3 +102,19 @@ def deletar_agendamento(id: int):
     conn.commit()
     conn.close()
     return {"mensagem": "Agendamento deletado com sucesso"}
+
+@router.post("/agendamentos/{id}/desenho")
+async def upload_desenho(id: int, arquivo: UploadFile = File(...)):
+    nome_arquivo = f"{id}_{arquivo.filename}"   # o id na frente evita nomes repetidos entre agendamentos
+    caminho = os.path.join("uploads", nome_arquivo)
+
+    conteudo = await arquivo.read()       # lê o conteúdo do arquivo enviado
+    with open(caminho, "wb") as f:        # "wb" = write binary — é uma imagem, não texto
+        f.write(conteudo)
+
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("UPDATE agendamento SET desenhoaprovado=%s WHERE idagendamento=%s", (nome_arquivo, id))
+    conn.commit()
+    conn.close()
+    return {"mensagem": "Desenho enviado com sucesso", "arquivo": nome_arquivo}
