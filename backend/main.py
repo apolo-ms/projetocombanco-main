@@ -4,11 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 from rotas import clientes, senioridade, tatuadores, agendamento, estilos
 
-try:
-    from rotas import agendamento, clientes, senioridade, tatuadores
-except ModuleNotFoundError:
-    from backend.rotas import agendamento, clientes, senioridade, tatuadores
-
 app = FastAPI()
 
 app.add_middleware(
@@ -23,11 +18,11 @@ UPLOADS_DIR = os.path.join(BASE_DIR, "uploads")
 os.makedirs(UPLOADS_DIR, exist_ok=True)
 app.mount("/uploads", StaticFiles(directory=UPLOADS_DIR), name="uploads")
 
-app.include_router(clientes.router)
-app.include_router(senioridade.router)
-app.include_router(tatuadores.router)
-app.include_router(agendamento.router)
-app.include_router(estilos.router)
+app.include_router(clientes.router, prefix="/clientes", tags=["Clientes"])
+app.include_router(senioridade.router, prefix="/senioridade", tags=["Senioridade"])
+app.include_router(tatuadores.router, prefix="/tatuadores", tags=["Tatuadores"])
+app.include_router(agendamento.router, prefix="/agendamentos", tags=["Agendamentos"])
+app.include_router(estilos.router, prefix="/estilos", tags=["Estilos"])
 
 
 @app.get("/")

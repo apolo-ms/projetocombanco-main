@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 22/10/2026 às 13:53
+-- Host: localhost
+-- Tempo de geração: 23/10/2026 às 14:51
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Versão do PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,13 +50,7 @@ INSERT INTO `agendamento` (`idagendamento`, `idcliente`, `idtatuador`, `dataagen
 (2, 2, 2, '2025-05-11', '10:00:00', 'Rosa aquarela no ombro', NULL, 200.00, 'pendente'),
 (3, 2, 2, '0000-00-00', '00:00:10', 'e um gatao', NULL, 10.00, 'pendente'),
 (4, 2, 2, '0000-00-00', '00:00:10', 'e um gatao', NULL, 10.00, 'pendente'),
-(5, 2, 2, '0000-00-00', '00:00:10', 'e um gatao', NULL, 10.00, 'pendente'),
-(6, 2, 2, '0000-00-00', '00:00:10', 'e um gatao', NULL, 10.00, 'pendente'),
 (7, 2, 2, '0000-00-00', '00:00:10', 'e um gatao', NULL, 10.00, 'pendente'),
-(8, 2, 2, '0000-00-00', '00:00:10', 'e um gatao', NULL, 10.00, 'pendente'),
-(9, 2, 2, '0000-00-00', '00:00:10', 'e um gatao', NULL, 10.00, 'pendente'),
-(10, 2, 2, '0000-00-00', '00:00:10', 'e um gatao', NULL, 10.00, 'pendente'),
-(11, 2, 2, '0000-00-00', '00:00:10', 'e um gatao', NULL, 10.00, 'pendente'),
 (12, 2, 2, '2026-10-06', '10:20:00', 'e um gatao', '12_51f8t9b8smL.jpg', 10.02, 'confirmado'),
 (13, 1, 2, '2026-10-20', '08:51:00', 'fff', NULL, 10.00, 'pendente');
 

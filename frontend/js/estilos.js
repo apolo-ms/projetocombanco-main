@@ -69,3 +69,21 @@ async function deletarEstilo(id) {
   await fetch(`${API}/estilos/${id}`, { method: 'DELETE' })
   listarEstilos()
 }
+// ─── Busca os estilos na API e monta os checkboxes ───
+async function carregarEstilos() {
+  const resposta = await fetch(`${API}/estilos`)
+  const estilos = await resposta.json()
+
+  const lista = document.getElementById('lista-estilos')
+  lista.innerHTML = ''
+
+  estilos.forEach(e => {
+    lista.innerHTML += `
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="${e.idestilo}" id="estilo-${e.idestilo}">
+        <label class="form-check-label" for="estilo-${e.idestilo}">${e.descricao}</label>
+      </div>`
+  })
+}
+
+carregarEstilos()
