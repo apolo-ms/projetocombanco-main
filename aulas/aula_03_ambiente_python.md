@@ -100,13 +100,15 @@ A pasta `venv` tem centenas de arquivos e pesa muito. Não faz sentido mandar pr
 | `uvicorn`                | O servidor que vai rodar a API            |
 | `mysql-connector-python` | Conecta o Python ao banco MySQL           |
 | `python-dotenv`          | Lê configurações do arquivo `.env`        |
+| `bcrypt`                 | Protege senhas com hash                    |
+| `python-multipart`       | Recebe arquivos enviados para a API        |
 
 ### Instalando
 
 Com o venv ativado, execute:
 
 ```powershell
-pip install fastapi uvicorn mysql-connector-python python-dotenv
+pip install -r requirements.txt
 ```
 
 ### Salvando as dependências
@@ -185,10 +187,31 @@ Remove-Item -Recurse -Force backend\venv
 C:\Python310\python.exe -m venv backend\venv --system-site-packages
 ```
 
-3. Ative e instale normalmente:
+3. Ative e instale as dependências do projeto:
 ```powershell
 .\backend\venv\Scripts\Activate.ps1
-pip install fastapi uvicorn mysql-connector-python python-dotenv
+python -m pip install -r backend\requirements.txt
+```
+
+---
+
+### Erro `ModuleNotFoundError: No module named 'fastapi'`
+
+Esse erro indica que o FastAPI não está instalado no Python que está iniciando o servidor. Ative o ambiente virtual, instale as dependências e inicie o Uvicorn pelo mesmo Python.
+
+No Linux/macOS, a partir da raiz do projeto:
+```bash
+cd backend
+source venv/bin/activate
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --reload
+```
+
+No Windows, a partir da raiz do projeto:
+```powershell
+.\backend\venv\Scripts\Activate.ps1
+python -m pip install -r backend\requirements.txt
+python -m uvicorn main:app --reload --app-dir backend
 ```
 
 ---
