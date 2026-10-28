@@ -11,7 +11,9 @@ from database import conectar
 import bcrypt
 import jwt
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 router = APIRouter()
 
 SECRET_KEY = os.getenv("SECRET_KEY")   # a chave que assina os tokens, vinda do .env

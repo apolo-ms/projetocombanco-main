@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 27/10/2026 às 22:22
+-- Host: 127.0.0.1
+-- Tempo de geração: 28/10/2026 às 14:37
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.0.30
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -186,7 +186,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `nome`, `email`, `senha`, `tipo`, `idcliente`) VALUES
-(1, 'apolo', 'apoloprog@gmail.com', '$2b$12$ffYVyCv0wCyPoPiVQLUQQO9ltYM8IKUdZAY1DCAHEDgLelS.PC/4G', 'funcionario', NULL);
+(1, 'apolo', 'apoloprog@gmail.com', '$2b$12$ffYVyCv0wCyPoPiVQLUQQO9ltYM8IKUdZAY1DCAHEDgLelS.PC/4G', 'funcionario', NULL),
+(3, 'pessoa', 'pessoa@gmail.com', '$2b$12$81DAZV7tzTpaGxkDCO7TbesDRgv2XGQdCpbKvgvhcVnkcUHpLo1Em', 'funcionario', NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -280,7 +281,7 @@ ALTER TABLE `tatuador`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restrições para tabelas despejadas
