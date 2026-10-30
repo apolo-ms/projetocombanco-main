@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 28/10/2026 às 14:37
+-- Host: localhost
+-- Tempo de geração: 30/10/2026 às 15:02
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Versão do PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -187,7 +187,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idusuario`, `nome`, `email`, `senha`, `tipo`, `idcliente`) VALUES
 (1, 'apolo', 'apoloprog@gmail.com', '$2b$12$ffYVyCv0wCyPoPiVQLUQQO9ltYM8IKUdZAY1DCAHEDgLelS.PC/4G', 'funcionario', NULL),
-(3, 'pessoa', 'pessoa@gmail.com', '$2b$12$81DAZV7tzTpaGxkDCO7TbesDRgv2XGQdCpbKvgvhcVnkcUHpLo1Em', 'funcionario', NULL);
+(3, 'Administrador', 'admin@estudio.com', '$2b$12$UG7c33UV8Pe/AU1DWtg8Euq22n1PhvvKE7mhYHdoTCs57.nVem3g.', 'admin', NULL),
+(4, 'edson', 'edson@gmail.com', '$2b$12$SWBQSeyVOrB6DLU5AT/gcO0BzKaF/DZaGC51J3HAldZB8Uh1xbdve', 'funcionario', NULL);
 
 --
 -- Índices para tabelas despejadas

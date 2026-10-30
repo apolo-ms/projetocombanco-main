@@ -12,4 +12,5 @@ def conectar():
         user=os.getenv("DB_USER"),          # usuário do banco
         password=os.getenv("DB_PASSWORD"),  # senha do banco
         database=os.getenv("DB_NAME")       # nome do banco
+        
     )
